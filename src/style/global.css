@@ -30,3 +30,44 @@ body {
     }
 
 }
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 1rem;
+}
+
+.header .search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    max-width: 20rem;
+    height: 2rem;
+
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+
+    padding: 0 .5rem;
+}
+
+.header .search input {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    font-size: 1rem;
+}
+
+.header .search button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}

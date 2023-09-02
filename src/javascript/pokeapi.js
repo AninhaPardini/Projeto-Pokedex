@@ -16,6 +16,15 @@ function convertPokeApiDetailToPokemon(pokeDetail) {
     return pokemon
 }
 
+pokeApi.getSearchPokemons = async (search) => {
+    const pokemons = await pokeApi.getPokemons(0, 151)
+    const matchingPokemons = pokemons.filter((pokemon) => {
+        const pokemonName = pokemon.name.toLowerCase()
+        return pokemonName.includes(search)
+    })
+    return matchingPokemons
+}
+
 pokeApi.getPokemonDetail = async (pokemon) => {
     return fetch(pokemon.url)
         .then((response) => response.json())
