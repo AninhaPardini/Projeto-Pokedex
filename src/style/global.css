@@ -1,0 +1,32 @@
+:root {
+
+    --color-white: #fff;
+    --bg-green: #48D0B0;
+    --color-black: rgb(42, 42, 42);
+}
+
+* {
+    font-family: raleway, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    color: var(--color-black);
+    background-color: #e8e8e8;
+}
+
+.content {
+    max-width: 90vw;
+    height: auto;
+
+    border-radius: 1rem;
+
+    padding: 1rem;
+    background-color: var(--color-white);
+    margin: 1rem auto;
+
+    @media (min-width: 791px) {
+        max-width: 43rem;
+    }
+
+}
