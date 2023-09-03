@@ -21,6 +21,7 @@ function loadPokemons(offset, limit) {
 
                     <img src="${pokemon.image}"
                         alt="${pokemon.name}">
+                        
                 </div>
             </li>
             `
