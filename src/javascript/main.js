@@ -1,5 +1,6 @@
 const pokemonsElement = document.getElementById('pokemonList');
 const loadMoreButton = document.getElementById('loadMoreButton');
+const pokemonElement = document.querySelectorAll('.pokemon');
 
 const maxRecords = 151
 let offset = 0;
@@ -40,7 +41,7 @@ loadMoreButton.addEventListener('click', () => {
     }
 })
 
-// faça um search que leia todos os pokemons do pokeAPI.getpokemons e filtre os pokemons que contem o nome ou número digitado no input
+// faça um search que le todos os pokemons e retorna os que correspodem ao search
 
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
@@ -83,7 +84,29 @@ searchInput.addEventListener('keyup', debounce(async (offset, limit) => {
     removeLoadMoreButton.classList.add('hidden');
 }, 100));
 
+// função que abre o modal quando clico no pokemon
 
+const modal = document.querySelector('.modal-pokemon');
+const modalContent = document.querySelector('.modal-content');
+const modalClose = document.getElementById('modal-close');
+
+pokemonsElement.addEventListener('click', (event) => {
+    const pokemon = event.target.closest('.pokemon');
+    if (pokemon) {
+        console.log('pokemon:', pokemon);
+        modal.style.display = 'block';
+        modal.style.animation = 'bottonToTop 2s forwards';
+        modalContent.style.height = 'bottonToTop 2s forwards';
+
+    }
+}
+);
+
+/* 
+modalClose.addEventListener('click', () => {
+    modal.style.display = 'none';
+}
+); */
 
 
 
