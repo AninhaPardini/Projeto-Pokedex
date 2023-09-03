@@ -88,25 +88,28 @@ searchInput.addEventListener('keyup', debounce(async (offset, limit) => {
 
 const modal = document.querySelector('.modal-pokemon');
 const modalContent = document.querySelector('.modal-content');
-const modalClose = document.getElementById('modal-close');
+const modalClose = document.getElementById('close-modal');
 
 pokemonsElement.addEventListener('click', (event) => {
     const pokemon = event.target.closest('.pokemon');
     if (pokemon) {
         console.log('pokemon:', pokemon);
         modal.style.display = 'block';
-        modal.style.animation = 'bottonToTop 2s forwards';
-        modalContent.style.height = 'bottonToTop 2s forwards';
+        modal.style.animation = 'bottonToTop 1s forwards';
+        modalContent.style.height = 'bottonToTop 1s forwards';
 
     }
 }
 );
 
-/* 
 modalClose.addEventListener('click', () => {
-    modal.style.display = 'none';
+    modal.style.animation = 'topToBotton 1s forwards';
+    timeoutId = window.setTimeout(() => {
+        modal.style.display = 'none';
+    }, 1000);
+
 }
-); */
+);
 
 
 

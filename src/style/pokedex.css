@@ -145,6 +145,18 @@
     }
 }
 
+@keyframes topToBotton {
+    from {
+        opacity: 1;
+        height: 100vh;
+    }
+
+    to {
+        opacity: 0;
+        height: 0vh;
+    }
+}
+
 .modal-pokemon {
     display: none;
     flex-direction: column;
@@ -154,8 +166,6 @@
     position: fixed;
     top: 0;
     left: 0;
-
-    
 
     background-image: url("/src/public/pokeball.png");
     background-repeat: no-repeat;
@@ -168,11 +178,22 @@
     z-index: 3;
 }
 
+.modal-pokemon .close-modal {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    color: rgb(234, 234, 234);
+}
+
+
+
 .modal-pokemon .modal-container {
     text-align: center;
     margin: 0;
-
-    
 
     width: 100%;
     height: 0vh;
