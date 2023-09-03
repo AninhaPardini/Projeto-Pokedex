@@ -146,9 +146,9 @@
     width: 100vw;
     height: 100vh;
 
-    background-color: rgba(108, 223, 55, 0.821);
+    background-color: rgba(68, 172, 20, 0.895);
+    filter: "progid:DXImageTransform.Microsoft.blur(MakeShadow='false', PixelRadius='3',ShadowOpacity='0.75')";
     backdrop-filter: blur(5px);
-    --webkit-filter: blur(3px);
 
     z-index: 3;
 }
