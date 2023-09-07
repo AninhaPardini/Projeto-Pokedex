@@ -258,6 +258,18 @@
     padding: 0 1rem;
 }
 
+.modal-pokemon .modal-container .modal-content .modal-header .modal-header-number {
+    position: relative;
+    top: -2rem;
+    right: -20rem;
+
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 400;
+    
+    color: #c2c2c2;
+}
+
 .modal-pokemon .modal-container .modal-content .modal-header .modal-header-name {
     margin: 0;
     font-size: 2.5rem;
@@ -283,6 +295,8 @@
 
     filter: brightness(1.1);
 
+    text-decoration: none;
+    list-style: none;
     text-align: center;
 
     @media (min-width: 0px) and (max-width: 736px) {
