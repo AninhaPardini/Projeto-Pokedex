@@ -11,6 +11,17 @@ function convertPokeApiDetailToPokemon(pokeDetail) {
     pokemon.types = types
     pokemon.type = type
 
+    const stats = pokeDetail.stats.map((statSlot) => statSlot.base_stat) // o map retorna um array com os valores de base_stat
+    const [hp, attack, defense, specialAttack, specialDefense, speed] = stats // o destructuring atribui os valores do array a cada variável
+
+    pokemon.stats = stats // o array de stats é atribuído à propriedade stats do pokemon
+    pokemon.hp = hp
+    pokemon.attack = attack
+    pokemon.defense = defense
+    pokemon.specialAttack = specialAttack
+    pokemon.specialDefense = specialDefense
+    pokemon.speed = speed
+
     pokemon.image = pokeDetail.sprites.other.dream_world.front_default
 
     return pokemon

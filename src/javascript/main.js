@@ -1,6 +1,8 @@
 const pokemonsElement = document.getElementById('pokemonList');
 const loadMoreButton = document.getElementById('loadMoreButton');
 const pokemonElement = document.querySelectorAll('.pokemon');
+const modal = document.querySelector('.modal');
+
 
 const maxRecords = 151
 let offset = 0;
@@ -88,168 +90,175 @@ searchInput.addEventListener('keyup', debounce(async (offset, limit) => {
 
 
 setTimeout(() => {
-    const modal = document.querySelector('.modal-pokemon');
-    const modalContent = document.querySelector('.modal-content');
-    const modalClose = document.getElementById('close-modal');
     const pokemonAncora = document.querySelectorAll('.pokemon-enveloper');
     console.log('aaaaa', pokemonAncora);
-
 
     pokemonAncora.forEach(async (pokemon) => {
         pokemon.addEventListener('click', async (e) => {
             e.preventDefault();
             const pokemon = e.target.closest('.pokemon-enveloper');
-            console.log('pokemon', pokemon);
 
             if (pokemon) {
                 const pokemonName = pokemon.querySelector('.name').textContent;
                 const pokemonsAll = await pokeApi.getSearchPokemons(pokemonName);
-                console.log('pokemonsAll', pokemonsAll);
 
                 let modalHtml = ``
 
                 pokemonsAll.forEach((pokemon) => {
                     modalHtml += `
-                        <div class= "modal-container" >
-                            <button type="button" class="close-modal" id="close-modal">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" style="transform: rotate(90deg);">
-                                    <path d="m9 18 6-6-6-6" />
-                                </svg>
-                            </button>
 
-                            <img src="${pokemon.image}" alt="${pokemon.name}">
-                        
-                            <div class="modal-content">
+                        <section class="modal-pokemon">
+                            <div class= "modal-container" >
+                                <button type="button" class="close-modal" id="close-modal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" style="transform: rotate(90deg);">
+                                        <path d="m9 18 6-6-6-6" />
+                                    </svg>
+                                </button>
 
-                                <section class="modal-header">
-                                    <h1 class="modal-header-number ">#${pokemon.number}</h1>
-                                    <h1 class="modal-header-name">${pokemon.name}</h1>
-                                    <div class="modal-header-types">
-                                        ${pokemon.types.map((type) => `<li class="modal-header-type ${type}">${type}</li>`).join('')}
+                                <img src="${pokemon.image}" alt="${pokemon.name}">
+                            
+                                <div class="modal-content">
 
-                                    </div>
-                                </section>
-                                <div class="modal-description">
-                                    <p>O Pokémon Semente, é a escolha perfeita para treinadores iniciantes. Ele é do tipo Planta e Veneno, possui uma semente nas costas que cresce à medida que evolui.</p>
+                                    <section class="modal-header">
+                                        <h1 class="modal-header-number ">#${pokemon.number}</h1>
+                                        <h1 class="modal-header-name">${pokemon.name}</h1>
+                                        <div class="modal-header-types">
+                                            ${pokemon.types.map((type) => `<li class="modal-header-type ${type}">${type}</li>`).join('')}
+
+                                        </div>
+                                    </section>
+                                    <!-- <div class="modal-description">
+                                        <p>O Pokémon Semente, é a escolha perfeita para treinadores iniciantes. Ele é do tipo Planta e Veneno, possui uma semente nas costas que cresce à medida que evolui.</p>
+                                    </div> -->
+
+                                    <section class="modal-details">
+                                        <nav class="modal-menu">
+                                            <button type="button" class="modal-menu-button active" id="stats">Status Base</button>
+                                            <button type="button" class="modal-menu-button" id="evolutions">Evoluções</button>
+                                        </nav>
+                                        <section class="modal-stats">
+                                            <div class="modal-stats-items">
+                                                <div class="stats-item">
+                                                    <h4>HP</h4>
+                                                    <p class="hp-value">${pokemon.hp}</p>
+                                                </div>
+                                                
+
+                                            </div>
+                                            <div class="modal-stats-items">
+                                                <div class="stats-item">
+                                                    <h4>ATK</h4>
+                                                    <p class="atk-value">${pokemon.attack}</p>
+                                                </div>
+                                                
+
+                                            </div>
+                                            <div class="modal-stats-items">
+                                                <div class="stats-item">
+                                                    <h4>DEF</h4>
+                                                    <p class="def-value">${pokemon.defense}</p>
+                                                </div>
+                                                
+
+                                            </div>
+                                            <div class="modal-stats-items">
+                                                <div class="stats-item">
+                                                    <h4>STATK</h4>
+                                                    <p class="statk-value">${pokemon.specialAttack}</p>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="modal-stats-items">
+                                                <div class="stats-item">
+                                                    <h4>SDEF</h4>
+                                                    <p class="sdef-value">${pokemon.specialDefense}</p>
+                                                </div>
+                                                
+
+                                            </div>
+                                            <div class="modal-stats-items">
+                                                <div class="stats-item">
+                                                    <h4>SPO</h4>
+                                                    <p class="spo-value">${pokemon.speed}</p>
+                                                </div>
+                                                
+
+                                            </div>
+
+                                        </section>
+                                        <section class="modal-evolutions">
+                                            <p>Esse conteúdo está em construção</p>
+                                        </section>
+                                    </section>
                                 </div>
-
-                                <section class="modal-details">
-                                    <nav class="modal-menu">
-                                        <button type="button" class="modal-menu-button" id="active">Status Base</button>
-                                        <button type="button" class="modal-menu-button" id="desative">Evoluções</button>
-                                    </nav>
-                                    <section class="modal-stats">
-                                        <div class="modal-stats-items">
-                                            <div class="stats-item">
-                                                <p>HP</p>
-                                                <p class="hp-value">000</p>
-                                            </div>
-                                            <div class="modal-stats-item-bar">
-                                                <div class="modal-stats-item-bar-fill">
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-stats-items">
-                                            <div class="stats-item">
-                                                <p>ATK</p>
-                                                <p class="atk-value">000</p>
-                                            </div>
-                                            <div class="modal-stats-item-bar">
-                                                <div class="modal-stats-item-bar-fill">
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-stats-items">
-                                            <div class="stats-item">
-                                                <p>DEF</p>
-                                                <p class="def-value">000</p>
-                                            </div>
-                                            <div class="modal-stats-item-bar">
-                                                <div class="modal-stats-item-bar-fill">
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-stats-items">
-                                            <div class="stats-item">
-                                                <p>STATK</p>
-                                                <p class="statk-value">000</p>
-                                            </div>
-                                            <div class="modal-stats-item-bar">
-                                                <div class="modal-stats-item-bar-fill">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-stats-items">
-                                            <div class="stats-item">
-                                                <p>SDEF</p>
-                                                <p class="sdef-value">000</p>
-                                            </div>
-                                            <div class="modal-stats-item-bar">
-                                                <div class="modal-stats-item-bar-fill">
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-stats-items">
-                                            <div class="stats-item">
-                                                <p>SPO</p>
-                                                <p class="spo-value">000</p>
-                                            </div>
-                                            <div class="modal-stats-item-bar">
-                                                <div class="modal-stats-item-bar-fill">
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </section>
-                                    <section class="modal-evolutions">
-
-                                    </section>
-                                </section>
                             </div>
-                        </div>
+                        </section> 
+                        
                     `;
 
-                    modal.classList.add(`${pokemon.type}`);
                 });
 
                 modal.innerHTML = modalHtml;
+                const modalPokemon = document.querySelector('.modal-pokemon');
 
-                modal.style.display = 'block';
-                modal.style.animation = 'bottonToTop 1s forwards';
+                const pokemonType = pokemon.querySelector('.pokemon').classList[1];
+                modalPokemon.classList.add(`${pokemonType}`);
+
+                modalPokemon.style.display = 'block';
+                modalPokemon.style.animation = 'bottonToTop 1s forwards';
+
+                function closeModal() {
+                    modalPokemon.style.animation = 'topToBotton 1s forwards';
+                    timeoutId = window.setTimeout(() => {
+                        modalPokemon.style.display = 'none';
+                    }, 1000);
+
+                }
+
+                const modalClose = document.getElementById('close-modal');
+                console.log(modalClose)
+                modalClose.addEventListener('click', closeModal);
+
+                function toggleElements(activeElementId, deactivateElementId) {
+                    const activeElement = document.querySelector(activeElementId);
+                    const deactivateElement = document.querySelector(deactivateElementId);
+
+                    if (activeElement && deactivateElement) {
+                        activeElement.style.display = 'flex';
+                        deactivateElement.style.display = 'none';
+
+                    }
+                }
+
+                function toggleButtons(activeButtonId, deactivateButtonId) {
+                    const activeButton = document.getElementById(activeButtonId);
+                    const deactivateButton = document.getElementById(deactivateButtonId);
+
+                    if (activeButton && deactivateButton) {
+                        activeButton.classList.add('active');
+                        deactivateButton.classList.remove('active');
+
+                    }
+                }
+
+                // Adicionar manipuladores de eventos aos botões
+                document.getElementById('stats').addEventListener('click', function () {
+                    toggleButtons('stats', 'evolutions');
+                    toggleElements('.modal-stats', '.modal-evolutions');
+                });
+
+                document.getElementById('evolutions').addEventListener('click', function () {
+                    toggleButtons('evolutions', 'stats');
+                    toggleElements('.modal-evolutions', '.modal-stats');
+                });
 
             }
-
-
 
         }
         );
     });
 
-    modalClose.addEventListener('click', () => {
-        modal.style.animation = 'topToBotton 1s forwards';
-        timeoutId = window.setTimeout(() => {
-            modal.style.display = 'none';
-        }, 1000);
-
-    }
-    );
-
-
 }, 1000);
-
-
-
 
 
 

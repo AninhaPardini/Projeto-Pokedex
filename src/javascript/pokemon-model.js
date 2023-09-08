@@ -3,5 +3,8 @@ class Pokemon {
     name;
     type;
     types = [];
+    stats = [];
+    base_stat;
+    stat;
     image;
 }
