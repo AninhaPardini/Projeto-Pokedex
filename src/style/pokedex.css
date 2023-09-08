@@ -29,7 +29,7 @@
     padding: 1rem;
     margin: .3rem;
 
-    background-image: url("/src/public/pokeball.png");
+    background-image: url("./src/public/pokeball.png");
     background-repeat: no-repeat;
     background-position: right -1.5rem top 3rem;
     background-size: 60%;
@@ -172,7 +172,7 @@
     top: 0;
     left: 0;
 
-    background-image: url("/src/public/pokeball.png");
+    background-image: url("./src/public/pokeball.png");
     background-repeat: no-repeat;
     background-position: left 2rem top -3rem;
     background-size: 50%;

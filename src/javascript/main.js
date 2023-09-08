@@ -133,7 +133,7 @@ setTimeout(() => {
 
                                     <section class="modal-details">
                                         <nav class="modal-menu">
-                                            <button type="button" class="modal-menu-button active" id="stats">Status Base</button>
+                                            <button type="button" class="modal-menu-button active fire" id="stats">Status Base</button>
                                             <button type="button" class="modal-menu-button" id="evolutions">Evoluções</button>
                                         </nav>
                                         <section class="modal-stats">
